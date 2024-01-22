@@ -1,7 +1,8 @@
 package org.example.Easy;
 
-public class InvertBinaryTree {
-    public class TreeNode {
+public class CountTreeNodes {
+
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -19,18 +20,14 @@ public class InvertBinaryTree {
             this.right = right;
         }
     }
-    public TreeNode invertTree(TreeNode root) {
-        TreeNode temp;
-        if (root == null) {
-            return null;
-        } else {
-            temp = root.left;
-            root.left = root.right;
-            root.right = temp;
+    int count = 0;
 
-            invertTree(root.left);
-            invertTree(root.right);
+    public int countNodes(TreeNode root) {
+        if (root == null) {
+            count = 0;
+        } else {
+            count = 1 + countNodes(root.left) + countNodes(root.right);
         }
-        return root;
+        return count;
     }
 }
